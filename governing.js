@@ -11,7 +11,7 @@ function getTest() {
         if (! (data)) {
            alert ("no response");
         } else {
-	alert ("YES");
+	// alert ("YES");
             };
         }
 });    
@@ -66,7 +66,12 @@ function setter() {
 	}
 	alert (interval);
 	
-	setTimeout(function() {
+	setTimeout(getOutsideLightingLevel, interval);
+    
+}
+
+function getOutsideLightingLevel ()
+{ 
 		var isBright = true;
 		var url = 'http://smarterwindow.lbl.gov/sensor/all'; 
 		  $.ajax({
@@ -84,22 +89,27 @@ function setter() {
 		});
 	if (isBright) //only invert the shade if it is bright outside
 	{	
-	var url='http://smarterwindow.lbl.gov/actions/override?timeout_seconds=120&api_key=AEChackathon';
+		var url='http://smarterwindow.lbl.gov/actions/override?timeout_seconds=120&api_key=AEChackathon';
 	
-	$.ajax({
-		type: "GET",
-		url: url,
-		dataType: 'jsonp',
-		//beforeSend: function(xhr) {xhr.setRequestHeader('Accept', 'application/json');},
-		success: function(data) {
-	        if (! (data)) {
-	           alert ("no response");
-	        } else {
-		alert ("Inversion successful");
-	            };
+		$.ajax({
+			type: "GET",
+			url: url,
+			dataType: 'jsonp',
+			//beforeSend: function(xhr) {xhr.setRequestHeader('Accept', 'application/json');},
+			success: function(data) {
+	        	if (! (data)) {
+	           		alert ("no response");
+	        	} else {
+					alert ("Inversion successful");
+	            		};
 	        }
-	});}, interval);
-    } 
+	});
+	}
+	
+	else //Philips lights do the disco dance for 30 seconds and then turn off the effect
+	{
+		
+	}
 }
 
 $(document).ready(function() {
