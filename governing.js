@@ -84,8 +84,9 @@ function setter() {
 }
 
 $(document).ready(function() {
-  $.ajaxSetup({ cache: false });
-  $("#go").click(setter);
+  $.ajaxSetup({ cache: false });  
+  $("#go").on('click', setter);
+
 //getTest();
     
   
