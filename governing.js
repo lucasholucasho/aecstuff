@@ -87,14 +87,14 @@ function getOutsideLightingLevel ()
 		            };
 		        }
 		});
-	if (isBright) //only invert the shade if it is bright outside
+	if (isBright)
 	{	
 		var url='http://smarterwindow.lbl.gov/actions/override?timeout_seconds=120&api_key=AEChackathon';
 	
 		$.ajax({
 			type: "GET",
 			url: url,
-			dataType: 'jsonp',
+			dataType: 'json',
 			//beforeSend: function(xhr) {xhr.setRequestHeader('Accept', 'application/json');},
 			success: function(data) {
 	        	if (! (data)) {
@@ -108,7 +108,16 @@ function getOutsideLightingLevel ()
 	
 	else //Philips lights do the disco dance for 30 seconds and then turn off the effect
 	{
-		
+		var url = 'http://192.168.0.4/api/newdeveloper/lights/1/state';
+		$.ajax({
+			type: "PUT",
+			url: url,
+			dataType: 'json',
+			//beforeSend: function(xhr) {xhr.setRequestHeader('Accept', 'application/json');},
+			success: function(data) {
+	        	alert ("HEY");
+	        }
+	});
 	}
 }
 
