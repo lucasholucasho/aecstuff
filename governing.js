@@ -1,6 +1,6 @@
 jQuery.ajaxSettings.traditional = true; 
 
-/*function getTest() {
+function getTest() {
   var url = 'http://smarterwindow.lbl.gov/sensor/all'; 
   $.ajax({
 	type: "GET",
@@ -15,7 +15,7 @@ jQuery.ajaxSettings.traditional = true;
             };
         }
 });    
-}*/
+}
 
 function setter() {
 	alert ("Alarm set");
@@ -66,7 +66,26 @@ function setter() {
 	}
 	alert (interval);
 	
-	setTimeout(function() {var url='http://smarterwindow.lbl.gov/actions/override?timeout_seconds=120&api_key=AEChackathon';
+	setTimeout(function() {
+		var isBright = true;
+		var url = 'http://smarterwindow.lbl.gov/sensor/all'; 
+		  $.ajax({
+			type: "GET",
+			url: url,
+			dataType: 'json',
+			beforeSend: function(xhr) {xhr.setRequestHeader('Accept', 'application/json');},
+			success: function(data) {
+		        if (! (data)) {
+		           alert ("no response");
+		        } else {
+			 			if (data.lastSensorReading.outside_light_sensor1 < 100) isBright = false;
+		            };
+		        }
+		});
+	if (isBright) //only invert the shade if it is bright outside
+	{	
+	var url='http://smarterwindow.lbl.gov/actions/override?timeout_seconds=120&api_key=AEChackathon';
+	
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -80,13 +99,13 @@ function setter() {
 	            };
 	        }
 	});}, interval);
-
+    } 
 }
 
 $(document).ready(function() {
   $.ajaxSetup({ cache: false });
   $("#go").click(setter);
-//getTest();
+getTest();
     
   
 });
