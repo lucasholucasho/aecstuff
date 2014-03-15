@@ -103,9 +103,8 @@ function setter() {
 }
 
 $(document).ready(function() {
-  $.ajaxSetup({ cache: false });
-  $("#go").click(setter);
-getTest();
-    
+  $.ajaxSetup({ cache: false });  
+  $("#go").on('click', setter);
+  getTest();    
   
 });
