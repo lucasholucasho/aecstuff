@@ -3,11 +3,8 @@
   <head>
     <title>TestLight</title>
     <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src = "timepicker.js"></script>
     <link href = "http://netdna.bootstrapcdn.com/bootswatch/3.1.1/cerulean/bootstrap.min.css" rel="stylesheet">
-    <!--<link href = "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src = "http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">-->
     <style>
     
           html, body, #map-canvas {
@@ -70,13 +67,14 @@
         <h1> Window Alarm Clock </h1>
             <div>
               <br>
-              <input id="time" type="text" placeholder="Wake up at ..." </input> <br>
+              <input type="time" name="mytime" /> <br>
               <br>
-              <button id="go" class="btn btn-primary"> Set Alarm </button>
+              <button id="go" class="btn btn-primary"> Press Enter to Set Alarm </button>
             </div>
             <div id="info" class=""> </div>
     </div>
     <div id="results">  </div>
+
     <br>
     <br>
 </div>

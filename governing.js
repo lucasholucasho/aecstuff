@@ -17,13 +17,13 @@ function getTest() {
 });    
 }
 
-function setter() {
-	alert ("Alarm set");
+function setter(time) {
+	console.log ("Your alarm has been set");
 	//current time
 	var now = new Date();
-	
 	//desired time
-	var wanted = $('#time').val();
+	var wanted = time;
+	//console.log(time);
 	//transform the desired time
 
 	var colon = wanted.indexOf(":");
@@ -64,7 +64,7 @@ function setter() {
 	{
 		interval = 3600 * 24 * 1000 + interval;
 	}
-	alert (interval);
+	//console.log (interval);
 	
 	setTimeout(getOutsideLightingLevel, interval);
     
@@ -123,7 +123,17 @@ function getOutsideLightingLevel ()
 
 $(document).ready(function() {
   $.ajaxSetup({ cache: false });  
-  $("#go").on('click', setter);
-  getTest();    
+  //$("#go").on('click', setter);
+  //getTest();  
+$(function(){
+    $('input[type="time"]').timepicker({
+	'value'         : '16:00:00',
+		'dateformat': 'H:i:s',
+		'onsubmit' : function(time) {
+			//console.log(time);
+			setter(time);
+		}
+	})
+})  
   
 });
